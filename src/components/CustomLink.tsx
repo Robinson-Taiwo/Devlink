@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import handset from "@/components/assets/icons/handset.svg";
 import handsetTab from "@/components/assets/icons/handset_tab.svg";
-import LinkForm from "./LinkForm";
+import LinkForm from "../../public/LinkForm";
 
 interface LinkForm {
     id: number;

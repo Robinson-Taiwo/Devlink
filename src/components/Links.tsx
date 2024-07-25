@@ -3,9 +3,14 @@ import React from 'react'
 import github from "@/components/assets/icons/github.svg"
 import arrow from "@/components/assets/icons/arrow_right.svg"
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
+import { RootState } from "@/components/store/store"; // Adjust the path accordingly
 
 
 const Links = () => {
+
+  const platformState = useSelector((state: RootState) => state.platform);
+
   return (
     <>
 
@@ -42,6 +47,11 @@ const Links = () => {
 
               <div className=' h-[3.67rem] flex flex-row w-[100%] bg-[black] rounded-[0.67rem] pl-[1.33rem] pr-[1.167rem] py-[1.167rem]  ' >
 
+
+
+
+                
+
                 <div className="flex flex-row gap-[0.67rem]  " >
 
                   <span> <Image src={github} alt="github-icon" quality={100} />  </span>
@@ -67,7 +77,19 @@ const Links = () => {
         </div >
 
 
-
+{/*  <div className="mt-4">
+                <h2>Selected Platforms:</h2>
+                <ul>
+                    {platformState.platforms.map((platform, index) => (
+                        <li key={index}>
+                            <div>
+                                <img src={`/${platform.icon}`} alt={`${platform.name}-icon`} width={16} height={16} />
+                                {platform.name} - {platform.color}
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            </div> */}
 
       </div>
     </>

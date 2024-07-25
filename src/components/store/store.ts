@@ -1,11 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import tabsReducer from '@/components/store/tabsSlice';
 import formsReducer from "@/components/store/formsSlice"
+import platformReducer from "@/components/store/platformSlice"
+
 
 const store = configureStore({
   reducer: {
     tabs: tabsReducer,
     forms: formsReducer,
+    platform: platformReducer,
+
   },
 });
 
