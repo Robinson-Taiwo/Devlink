@@ -5,7 +5,7 @@ interface TabsState {
 }
 
 const initialState: TabsState = {
-  currentTab: 'profile',
+  currentTab: 'link',
 };
 
 const tabsSlice = createSlice({
