@@ -18,8 +18,8 @@ const Navbar: React.FC = () => {
 
 
     return (
-        <div className=" phone:w-[27.92rem]  tablet:w-[56.67rem] sphone:w-[100%] items-center laptop:w-[100%] laptop:justify-between  flex flex-row ">
-            <div className=" w-[4.33rem] tablet:w-[12.17rem]  h-[2.67rem]  phone:mr-[3.458rem] tablet:mr-[4.625rem]  gap-[0.5rem] tablet:flex  flex-row ">
+        <div className=" phone:w-[100%] justify-between  tablet:w-[56.67rem] sphone:w-[100%] items-center  laptop:w-[100%] laptop:justify-between  flex flex-row ">
+            <div className=" w-[4.33rem] tablet:w-[12.17rem]  h-[2.67rem]  phone:mr-[3.458rem] tablet:mr-[4.625rem]  gap-[0.5rem] tablet:flex  flex-row  ">
                 <Image src={logo} alt="navbar-icon" quality={100} />
                 <div className=" sphone:hidden phone:hidden  tablet:flex " > <Image src={devlinks} alt="navbar-icon" quality={100} /> </div>
             </div>

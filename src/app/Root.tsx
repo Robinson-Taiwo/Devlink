@@ -15,9 +15,9 @@ const Root = () => {
   return (
     <main className="  phone:w-[100vw] overflow-x-hidden overflow-hidden sphone:w-[100%]  ">
 
-      <div className=" tablet:p-[2rem] " >
+      <div className=" w-[100%]  tablet:p-[2rem] flex items-center justify-center  " >
 
-        <div className="home-head pt-[1.33rem] w-[100%] sphone:items-center flex sphone:justify-center desktop:justify-center   tablet:pl-[2rem] tablet:pr-[1.33rem] phone:pl-[1.66rem] mb-[1.33rem] phone:pr-[1.6rem] pb-[1.33rem] ">
+        <div className="home-head pt-[1.33rem] w-[100%] sphone:items-center flex sphone:justify-center desktop:justify-center   tablet:pl-[2rem] tablet:pr-[1.33rem]   phone:pl-[1.66rem] mb-[1.33rem] phone:pr-[1.6rem]  pb-[1.33rem] ">
           <Navbar />
         </div>
       </div>
