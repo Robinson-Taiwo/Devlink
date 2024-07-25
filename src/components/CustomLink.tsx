@@ -45,7 +45,7 @@ const CustomLink: React.FC = () => {
 
     return (
         <>
-            <div className="  laptop:h-[100%]   w-[100%] laptop:w-[49.66rem] desktop:w-[67.33rem] px-[1.33rem] flex items-center justify-center  ">
+            <div className="  laptop:h-[100%] sphone:h-[100vh] phone:h-[100vh] tablet:h-[100%] w-[100%] laptop:w-[49.66rem] desktop:w-[67.33rem] px-[1.33rem]  flex items-center justify-center  ">
                 <div className="phone:w-[28.583rem] desktop:w-[100%] laptop:w-[49.66rem] tablet:w-[100%]  flex flex-col tablet:text-[2.67rem] tablet:leading-[4rem] phone:items-center tablet:items-start  p-[2rem] sphone:w-[100%] text-darkGrey ">
                     <div className="flex flex-col laptop:w-[100%] gap-[0.67rem] mb-[3.33rem] ">
                         <h1 className="text-[2rem] laptop:w-[100%] font-bold leading-[3rem]  ">
