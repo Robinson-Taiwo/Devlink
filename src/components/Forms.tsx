@@ -3,6 +3,7 @@ import envelope from "@/components/assets/icons/envelope.svg"
 import padlock from "@/components/assets/icons/padlock.svg"
 
 import Image from 'next/image';
+import Link from "next/link";
 
 const Forms: React.FC = () => {
     return (
@@ -31,7 +32,7 @@ const Forms: React.FC = () => {
                 </div>
                 <div className=" sphone:w-[100%]" >
 
-                    <button className=" h-[3.83rem]  w-[100%] sphone:w-[100%] flex items-center justify-center rounded-[0.67rem] font-semibold text-[1.33rem] laptop:text-normal  leading-[2rem]  bg-purple text-white " type="submit">Submit</button>
+                    <Link href="/home" className=" h-[3.83rem]  w-[100%] sphone:w-[100%] flex items-center justify-center rounded-[0.67rem] font-semibold text-[1.33rem] laptop:text-normal  leading-[2rem]  bg-purple text-white " type="submit">Submit</Link>
                 </div>
 
             </form>

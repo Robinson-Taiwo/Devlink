@@ -2,6 +2,7 @@ import React from 'react'
 import envelope from "@/components/assets/icons/envelope.svg"
 import padlock from "@/components/assets/icons/padlock.svg"
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 const SignupForm = () => {
@@ -44,13 +45,13 @@ const SignupForm = () => {
 
                 </div>
 
-                    <p className=" text-base leading-[1.5rem] text-grey " >
-                        Password must contain at least 8 characters
-                    </p>
+                <p className=" text-base leading-[1.5rem] text-grey " >
+                    Password must contain at least 8 characters
+                </p>
 
                 <div className=" sphone:w-[100%]" >
 
-                    <button className=" h-[3.83rem]  w-[100%] sphone:w-[100%] flex items-center justify-center rounded-[0.67rem] font-semibold text-[1.33rem] laptop:text-normal  leading-[2rem]  bg-purple text-white " type="submit">Submit</button>
+                    <Link href="/login" className=" h-[3.83rem]  w-[100%] sphone:w-[100%] flex items-center justify-center rounded-[0.67rem] font-semibold text-[1.33rem] laptop:text-normal  leading-[2rem]  bg-purple text-white " type="submit">Submit</Link>
                 </div>
 
             </form>
