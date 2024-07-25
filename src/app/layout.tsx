@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Instrument_Sans } from "next/font/google";
+
+
 import "./globals.css";
 
 const inter = Instrument_Sans({ subsets: ["latin"] });
@@ -16,7 +18,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+
+
+      <body className={inter.className}>
+
+        {children}
+        </body>
     </html>
   );
 }

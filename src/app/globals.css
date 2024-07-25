@@ -27,3 +27,19 @@ input:focus {
   outline: none;
   /* border: 0.083rem solid #633CFF */
 }
+
+.frame{
+    background-image: url(../components//assets/images/preview.png);
+    width: 25.58rem;
+    height: 52.58rem;
+}
+
+div::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge, and Firefox */
+  div {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
