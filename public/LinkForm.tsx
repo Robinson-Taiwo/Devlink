@@ -1,9 +1,25 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import bullet from "@/components/assets/icons/bullet.svg";
 import slink from "@/components/assets/icons/s_link.svg";
 import { Platform, platforms } from "@/components/data";
+import github from "@/components/assets/icons/github_grey.svg";
+import youtube from "@/components/assets/icons/yt_grey.svg";
+import frontendmentor from "@/components/assets/icons/fm_grey.svg";
+import freecodecamp from "@/components/assets/icons/fcc_grey.svg";
+import facebook from "@/components/assets/icons/fc_grey.svg";
+import gitlab from "@/components/assets/icons/gl_grey.svg";
+import hashnode from "@/components/assets/icons/hn_grey.svg";
+import linkedin from "@/components/assets/icons/twitter_grey.svg";
+import stackoverflow from "@/components/assets/icons/so_grey.svg";
+import twitch from "@/components/assets/icons/twitch_grey.svg";
+import codepen from "@/components/assets/icons/codepen_grey.svg";
+import codewar from "@/components/assets/icons/codewar_grey.svg";
+import devto from "@/components/assets/icons/dev_grey.svg";
+import twitter from "@/components/assets/icons/in_grey.svg";
+
 import Image from "next/image";
 import {
     Select,
@@ -12,43 +28,13 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { useDispatch, useSelector } from "react-redux";
-import { addOrUpdatePlatform } from "@/components/store/platformSlice"; // Adjust the path accordingly
-import { RootState } from "@/components/store/store"; // Adjust the path accordingly
 
 interface Iid {
     id: number;
     remove: (id: number) => void;
 }
 
-interface LinkData {
-    platform: string;
-    url: string;
-}
-
 const LinkForm = ({ id, remove }: Iid) => {
-    const dispatch = useDispatch();
-    const platformState = useSelector((state: RootState) => state.platform);
-
-    const [selectedPlatform, setSelectedPlatform] = useState<string>('');
-    const [links, setLinks] = useState<LinkData[]>([]);
-
-
-    const handleSelectChange = (value: string) => {
-        const platform = platforms.find(p => p.name === value);
-        if (platform) {
-            dispatch(addOrUpdatePlatform({
-                name: platform.name,
-                icon: platform.icon,
-                color: platform.color,
-            }));
-            setSelectedPlatform(platform.name);
-        }
-    };
-
-
-
-    
     return (
         <div className=" w-[100%] laptop:w-[100%] desktop:w-[100%] tablet:w-[53.33rem] mb-[2rem] h-fit  flex flex-col    ">
             <div className="flex tablet:gap-[38.75rem] laptop:justify-between laptop:gap-[0rem]   gap-[10rem] flex-row w-[100%]">
@@ -79,8 +65,7 @@ const LinkForm = ({ id, remove }: Iid) => {
                 <p className="text-base mt-[1rem] text-darkgrey leading-[1.5rem] ">
                     Platform
                 </p>
-                <Select value={selectedPlatform} onValueChange={setSelectedPlatform}>
-
+                <Select>
                     <SelectTrigger>
                         <SelectValue placeholder="Select Platform" />
                     </SelectTrigger>
@@ -99,7 +84,7 @@ const LinkForm = ({ id, remove }: Iid) => {
                                             quality={100}
                                             width={16}
                                             height={16}
-                                            alt={`${platform.name}-icon`}
+                                            alt="handset-icon"
                                         />{" "}
                                     </span>
                                     <span>{platform.name}</span>
