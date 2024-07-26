@@ -5,7 +5,7 @@ import padlock from "@/components/assets/icons/padlock.svg";
 import Image from "next/image";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/app/services/firebase"; // Adjus
-import  { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Terminal } from "lucide-react";
 
@@ -63,8 +63,8 @@ const Forms: React.FC = () => {
                     );
                     setLoading(false);
                     setTimeout(() => {
-                        router.push("/login");
-                    }, 3000);
+                        router.push("/home")
+                    }, 3000)
                 })
                 .catch((error) => {
                     console.log(error.message);
@@ -80,7 +80,7 @@ const Forms: React.FC = () => {
     return (
         <div className="flex flex-col w-[25.9rem]  tablet:w-[33rem] sphone:w-[100%] ">
             {alertText && (
-                <Alert className=" absolute left-[2rem] top-[2rem] bg-purple text-white  ">
+                <Alert className=" absolute left-[2rem] py-[2rem] top-[2rem] bg-purple text-white  ">
                     <Terminal className="h-4 w-4" />
                     <AlertTitle>Heyy!</AlertTitle>
                     <AlertDescription>{alertText}</AlertDescription>
@@ -113,7 +113,7 @@ const Forms: React.FC = () => {
                             value={email}
                         />
                         {emailError && (
-                            <p className="text-[red]  laptop:w-[13rem] text-center text-base mt-1">
+                            <p className="text-[red] text-center text-base mt-1">
                                 {emailError}
                             </p>
                         )}
@@ -148,12 +148,12 @@ const Forms: React.FC = () => {
                     </div>
                 </div>
                 <div className=" sphone:w-[100%]">
-                    <button
-                        className=" h-[3.83rem]  w-[100%] sphone:w-[100%] flex items-center justify-center rounded-[0.67rem] font-semibold text-[1.33rem] laptop:text-normal  leading-[2rem]  bg-purple text-white "
-                        type="submit"
-                    >
-                        Submit
-                    </button>
+                    <button className=" h-[3.83rem]  w-[100%] sphone:w-[100%] flex items-center justify-center rounded-[0.67rem] font-semibold text-[1.33rem] laptop:text-normal  leading-[2rem]  bg-purple text-white " type="submit">{loading ? (<div className="flex items-center justify-center h-screen">
+                        <svg className="animate-spin h-8 w-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </div>) : "Sign in"}</button>
                 </div>
             </form>
         </div>
