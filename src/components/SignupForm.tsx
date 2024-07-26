@@ -131,7 +131,7 @@ const SignupForm = () => {
                     </label>
                     <div className={`flex group focus-within:border-purple  focus-within:ring-purple focus-within:ring-3 focus-within:shadow-purple focus-within:shadow-sm focus-within:ring-opacity-[25%] gap-[1rem] items-center flex-center flex-row h-[4rem] px-[1.33rem]  ${emailError || passwordError || confirmError ? "border-[red]" : "border-border"} border-[0.083rem] py-[1rem] phone:w-[100%] sphone:w-[100%] rounded-[0.67rem]  `} >
                         <Image src={padlock} quality={100} alt="envelope-icon" />
-                        <input className=" placeholder:text-darkGrey phone:w-[20.92rem] tablet:w-[28rem] laptop:text-normal h-[2rem] sphone:w-[100%]" type="password" name="cpassword" placeholder="At least .8 characters" onChange={handleConfirmPasswordChange} value={confirmPassword} />
+                        <input className=" placeholder:text-darkGrey phone:w-[20.92rem] tablet:w-[28rem] laptop:text-normal h-[2rem] sphone:w-[100%]" type="password" name="cpassword" placeholder="At least 8 characters" onChange={handleConfirmPasswordChange} value={confirmPassword} />
                         {confirmError && <p className="text-[red]  laptop:w-[13rem] text-base text-center leading-[1.5rem] mt-1">{confirmError}</p>}
 
                     </div>
