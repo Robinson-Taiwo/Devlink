@@ -48,10 +48,6 @@ const Links = () => {
               <div className=' h-[3.67rem] flex flex-row w-[100%] bg-[black] rounded-[0.67rem] pl-[1.33rem] pr-[1.167rem] py-[1.167rem]  ' >
 
 
-
-
-                
-
                 <div className="flex flex-row gap-[0.67rem]  " >
 
                   <span> <Image src={github} alt="github-icon" quality={100} />  </span>

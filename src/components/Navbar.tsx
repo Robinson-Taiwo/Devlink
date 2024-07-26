@@ -9,6 +9,7 @@ import devlinks from "@/components/assets/icons/devlinks.svg";
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/components/store/store';
 import { setTab } from '@/components/store/tabsSlice';
+import Link from "next/link";
 
 
 const Navbar: React.FC = () => {
@@ -56,10 +57,10 @@ const Navbar: React.FC = () => {
                 </div>
             </div>
 
-            <div className="sphone:ml-[3.458rem] cursor-pointer phone:ml-[3.458rem] tablet:ml-[4.625rem] sphone:w-[4.33rem] phone:w-[4.33rem] tablet:w-[9.5rem]  h-[3.5rem] border-purple border flex items-center justify-center rounded-[0.67rem] ">
+            <Link href="/preview" className="sphone:ml-[3.458rem] cursor-pointer phone:ml-[3.458rem] tablet:ml-[4.625rem] sphone:w-[4.33rem] phone:w-[4.33rem] tablet:w-[9.5rem]  h-[3.5rem] border-purple border flex items-center justify-center rounded-[0.67rem] ">
                 <Image src={publish} alt="navbar-icon" className=" tablet:hidden " quality={100} />
                 <p className="sphone:hidden phone:hidden tablet:flex text-purple text-normal font-semibold leading-[2rem] " >Preview</p>
-            </div>
+            </Link>
         </div>
     );
 };

@@ -1,18 +1,23 @@
 "use client"
 import Image from 'next/image';
 import React, { useState, ChangeEvent } from 'react';
-import picture from "@/components/assets/icons/picture.svg"
-
-
+import picture from "@/components/assets/icons/picture.svg";
+import { useDispatch, useSelector } from 'react-redux';
+import { setFirstName, setLastName, setEmail, setSelectedImage } from '@/components/store/profileSlice';
+import type { AppDispatch, RootState } from '@/components/store/store';
 
 const Profile = () => {
+    const dispatch = useDispatch<AppDispatch>();
 
-    const [selectedImage, setSelectedImage] = useState<File | null>(null);
+    const [selectedImage, setSelectedImageInput] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    const [firstName, setFirstNameInput] = useState<string>('');
+    const [lastName, setLastNameInput] = useState<string>('');
+    const [email, setEmailInput] = useState<string>('');
 
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files ? e.target.files[0] : null;
-        setSelectedImage(file);
+        setSelectedImageInput(file);
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
@@ -24,6 +29,18 @@ const Profile = () => {
         }
     };
 
+    const handleSave = () => {
+        dispatch(setFirstName(firstName));
+        dispatch(setLastName(lastName));
+        dispatch(setEmail(email));
+        dispatch(setSelectedImage(previewUrl));
+        // Clear the inputs after saving
+        setFirstNameInput('');
+        setLastNameInput('');
+        setEmailInput('');
+        setSelectedImageInput(null);
+        setPreviewUrl(null);
+    };
 
     return (
         <div className=" laptop:h-[100%] tablet:w-[100vw] overflow-hidden overflow-x-hidden   w-[100%] laptop:w-[49.66rem] desktop:w-[67.33rem] tablet:px-[0rem]  px-[1.33rem]  flex items-center justify-center  " >
@@ -86,28 +103,31 @@ const Profile = () => {
 
 
 
-                        <div className=" tablet:gap-[1.33rem]  flex flex-col tablet:flex-row items-center  "   >
+                        <div className=" tablet:gap-[1.33rem]  flex flex-col tablet:flex-row tablet:items-center  "   >
                             <p className="text-base mb-[0.33rem] text-darkgrey leading-[1.5rem] tablet:w-[20rem]  " >First name*</p>
                             <div className="flex group gap-[1rem] items-center flex-center flex-row h-[4rem] px-[1.33rem]  border-border border-[0.083rem] py-[1rem] phone:w-[100%] sphone:w-[100%] rounded-[0.67rem]  tablet:w-[28.66rem]  " >
                                 {/* <Image src={slink} quality={100} alt="envelope-icon" /> */}
-                                <input className=" placeholder:text-grey leading-[2rem] text-normal phone:w-[100%] tablet:w-[28rem] laptop:text-normal h-[2rem] sphone:w-[100%] " type="text" name="first name" placeholder=" Ben" required />
+                                <input className=" placeholder:text-grey leading-[2rem] text-normal phone:w-[100%] tablet:w-[28rem] laptop:text-normal h-[2rem] sphone:w-[100%] " type="text" name="first name" placeholder=" Ben" value={firstName} onChange={(e) => setFirstNameInput(e.target.value)}
+                                    required />
                             </div>
 
                         </div>
-                        <div className=" tablet:gap-[1.33rem]  flex flex-col tablet:flex-row items-center  "  >
+                        <div className=" tablet:gap-[1.33rem]  flex flex-col tablet:flex-row tablet:items-center  "  >
                             <p className="text-base mb-[0.33rem] text-darkgrey leading-[1.5rem] tablet:w-[20rem] " >Last name*</p>
                             <div className="flex group  gap-[1rem] items-center flex-center flex-row h-[4rem] px-[1.33rem]  border-border border-[0.083rem] py-[1rem] phone:w-[100%] sphone:w-[100%] rounded-[0.67rem]  tablet:w-[28.66rem]  " >
-                                {/* <Image src={slink} quality={100} alt="envelope-icon" /> */}
-                                <input className=" placeholder:text-grey leading-[2rem] text-normal phone:w-[100%] tablet:w-[28rem] laptop:text-normal h-[2rem] sphone:w-[100%]" type="text" name="last name" placeholder=" Wright" required />
+
+
+                                <input className=" placeholder:text-grey leading-[2rem] text-normal phone:w-[100%] tablet:w-[28rem] laptop:text-normal h-[2rem] sphone:w-[100%]" type="text" name="last name" placeholder=" Wright" required onChange={(e) => setLastNameInput(e.target.value)} value={lastName} />
                             </div>
 
                         </div>
 
-                        <div className=" tablet:gap-[1.33rem]  flex flex-col tablet:flex-row items-center  "  >
+                        <div className=" tablet:gap-[1.33rem]  flex flex-col tablet:flex-row tablet:items-center  "  >
                             <p className="text-base mb-[0.33rem] text-darkgrey leading-[1.5rem] tablet:w-[20rem] " >Email*</p>
                             <div className="flex group  gap-[1rem] items-center flex-center flex-row h-[4rem] px-[1.33rem]  border-border border-[0.083rem] py-[1rem] phone:w-[100%] sphone:w-[100%] rounded-[0.67rem]  tablet:w-[28.66rem]  " >
                                 {/* <Image src={slink} quality={100} alt="envelope-icon" /> */}
-                                <input className=" placeholder:text-grey leading-[2rem] text-normal phone:w-[100%] tablet:w-[28rem] laptop:text-normal h-[2rem] sphone:w-[100%]" type="email" name="text" placeholder="ben@example.com" required />
+                                <input className=" placeholder:text-grey leading-[2rem] text-normal phone:w-[100%] tablet:w-[28rem] laptop:text-normal h-[2rem] sphone:w-[100%]" type="email" name="text" placeholder="ben@example.com" value={email} onChange={(e) => setEmailInput(e.target.value)}
+                                    required />
                             </div>
 
                         </div>
@@ -130,7 +150,7 @@ const Profile = () => {
 
                 <div className="flex  p-[1.33rem] w-[100%] border-t-border border-t-[0.083rem] justify-center  tablet:justify-end laptop:w-[100%] tablet:px-[3.33rem] tablet:w-[60rem]  tablet:h-[7.833rem] tablet:pt-[2rem] ">
                     <button
-
+                        onClick={handleSave}
                         className=" phone:w-[25.92rem] h-[3.83rem] flex items-center justify-center disabled:bg-hover bg-purple  text-white text-normal leading-[2rem] rounded-[0.67rem] tablet:w-[7.58rem]    "
                     >
                         Save

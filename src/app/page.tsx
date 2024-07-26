@@ -5,6 +5,8 @@ import logo from "@/components/assets/icons/logo.svg";
 import Link from 'next/link';
 
 const SignupPage = () => {
+
+
     return (
         <div className="flex h-[100vh]  tablet:justify-center  tablet:items-center flex-col tablet:px-[12.17rem] p-[2.667rem]">
             <div className="hearder tablet:mb-[7.58rem] laptop:mb-[7.58rem]  mb-[5.33rem]">

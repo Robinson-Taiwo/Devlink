@@ -5,42 +5,34 @@ import Image from "next/image";
 import handset from "@/components/assets/icons/handset.svg";
 import handsetTab from "@/components/assets/icons/handset_tab.svg";
 import LinkForm from "../../public/LinkForm";
+import { Platform } from "./data";
 
-interface LinkForm {
+interface LinkFormData {
     id: number;
-    title: string; // Added title property for display
+    platform: Platform | null;
+    link: string;
 }
-
 const CustomLink: React.FC = () => {
 
-    const [linkForms, setLinkForms] = useState<LinkForm[]>([]);
-
+    const [linkForms, setLinkForms] = useState<LinkFormData[]>([]);
 
     const addLinkForm = () => {
-        // Generate a unique ID based on existing form IDs
         const newId = linkForms.length === 0 ? 1 : Math.max(...linkForms.map(form => form.id)) + 1;
-
-        const newForm: LinkForm = {
-            id: newId,
-            title: `Link ${newId}`, // Set title based on generated ID
-        };
-
+        const newForm: LinkFormData = { id: newId, platform: null, link: "" };
         setLinkForms([...linkForms, newForm]);
     };
 
     const removeLinkForm = (id: number) => {
-        const updatedForms = linkForms.filter(form => form.id !== id);
+        setLinkForms(linkForms.filter(form => form.id !== id));
+    };
 
-        // Re-order titles based on remaining IDs and their original positions
-        const reOrderedForms = updatedForms.map((form, index) => {
-            const originalIndex = linkForms.findIndex(f => f.id === form.id); // Find original index based on ID
-            return {
-                ...form,
-                title: `Link ${originalIndex + 1}`, // Use original index for re-ordering
-            };
-        });
+    const updateLinkForm = (id: number, platform: Platform | null, link: string) => {
+        setLinkForms(linkForms.map(form => form.id === id ? { ...form, platform, link } : form));
+    };
 
-        setLinkForms(reOrderedForms);
+    const handleSave = () => {
+        console.log("Saved Data:", linkForms);
+        // Replace with your save logic
     };
 
     return (
@@ -107,7 +99,8 @@ const CustomLink: React.FC = () => {
                                 <div key={form.id} className=" flex gap-[1rem] flex-col    ">
 
                                     <div className="flex pt-[1.67rem] px-[1.67rem]  flex-col w-[100%]  " >
-                                        <LinkForm remove={removeLinkForm} id={form.id} />
+                                        <LinkForm remove={removeLinkForm} id={form.id} updateLinkForm={updateLinkForm} />
+
                                     </div>
 
 
@@ -120,7 +113,7 @@ const CustomLink: React.FC = () => {
 
                     <div className="flex p-[1.33rem] w-[100%] border-t-border border-t-[0.083rem]  tablet:justify-end tablet:px-[3.33rem]  tablet:h-[7.833rem] tablet:pt-[2rem] ">
                         <button
-
+                            onClick={handleSave}
                             className=" phone:w-[25.92rem] h-[3.83rem] flex items-center justify-center disabled:bg-hover bg-purple  text-white text-normal leading-[2rem] rounded-[0.67rem] tablet:w-[7.58rem]    "
                         >
                             Save
