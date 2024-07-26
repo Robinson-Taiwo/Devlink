@@ -3,13 +3,13 @@ import { getAnalytics, isSupported } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBQRHSCWmth3Hdlo2X9IqlubSQxxwRFNNs",
-  authDomain: "devlinks-f19c1.firebaseapp.com",
-  projectId: "devlinks-f19c1",
-  storageBucket: "devlinks-f19c1.appspot.com",
-  messagingSenderId: "193672576533",
-  appId: "1:193672576533:web:dc39b2fec27c42aea1d81c",
-  measurementId: "G-5YKZ2YS7ZJ"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
