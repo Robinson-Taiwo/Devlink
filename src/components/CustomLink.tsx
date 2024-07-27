@@ -94,7 +94,7 @@ const CustomLink: React.FC = () => {
 
                         </div>
                     ) : (
-                        <div className=" desktop:w-[60.66rem] tablet:w-[100%] tablet:h-[31.825rem] w-[100%] phone:h-[100%] laptop:h-[31.42rem] laptop:mb-[2rem] desktop:mb-[5rem]  overflow-auto overflow-x-auto    " >
+                        <div className=" desktop:w-[60.66rem] tablet:w-[100%] tablet:h-[31.825rem] w-[100%] phone:h-[95%] laptop:h-[31.42rem] laptop:mb-[2rem] desktop:mb-[5rem]  overflow-auto overflow-x-auto    " >
                             {linkForms.map((form) => (
                                 <div key={form.id} className=" flex gap-[1rem] flex-col    ">
 
