@@ -91,13 +91,13 @@ const Preview = () => {
                                             alt="Profile Picture"
                                             layout="fill"
                                             style={{ objectFit: "cover" }}
-                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                            
                                         />
                                     </div>
 
                                     {/* name and email for profile */}
                                     <div className="flex flex-col gap-[0.667rem">
-                                        <h1 className="text-darkGrey  font-bold text-[2.667rem] flex items-center justify-center leading-[4rem]  ">
+                                        <h1 className="text-darkGrey  font-bold text-[2.667rem] flex text-center items-center justify-center leading-[4rem]  ">
                                             {profileData.displayName}
                                         </h1>
 

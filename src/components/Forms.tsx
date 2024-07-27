@@ -57,7 +57,6 @@ const Forms: React.FC = () => {
 
             signInWithEmailAndPassword(auth, email, password)
                 .then((response) => {
-                    console.log(response);
                     setAlertText(
                         " welcome aboard. you will be redirected to the home page shortly"
                     );
