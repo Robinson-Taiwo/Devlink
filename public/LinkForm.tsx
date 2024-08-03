@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import bullet from "@/components/assets/icons/bullet.svg";
 import slink from "@/components/assets/icons/s_link.svg";
 import { Platform, platforms } from "@/components/data";
@@ -17,30 +17,24 @@ import {
 // Define the interface for the component props
 interface Iid {
     id: number;
+    platform: Platform | null;
+    link: string;
     remove: (id: number) => void;
-    updateLinkForm: (id: number, platform: Platform | null, link: string) => void;
+    handlePlatformChange: (id: number, platform: Platform | null) => void;
+    handleLinkChange: (id: number, link: string) => void;
 }
 
 // Define the LinkForm component
-const LinkForm = ({ id, remove }: Iid) => {
-    // State for selected platform
-    const [platform, setPlatform] = useState<Platform | null>(null);
-    // State for the link
-    const [link, setLink] = useState("");
+const LinkForm = ({ id, platform, link, remove, handlePlatformChange, handleLinkChange }: Iid) => {
 
-
-    const handlePlatformChange = (value: string) => {
+    const onPlatformChange = (value: string) => {
         const selectedPlatform = platforms.find((p) => p.name === value);
-        setPlatform(selectedPlatform || null);
-        updateLinkForm(id, selectedPlatform || null, link);
+        handlePlatformChange(id, selectedPlatform || null);
     };
 
-    const handleLinkChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const newLink = event.target.value;
-        setLink(newLink);
-        updateLinkForm(id, platform, newLink);
+    const onLinkChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        handleLinkChange(id, event.target.value);
     };
-
 
     return (
         <div className="w-[100%] laptop:w-[100%] desktop:w-[100%] tablet:w-[53.33rem] mb-[2rem] h-fit flex flex-col">
@@ -74,7 +68,7 @@ const LinkForm = ({ id, remove }: Iid) => {
                 <p className="text-base mt-[1rem] text-darkgrey leading-[1.5rem]">
                     Platform
                 </p>
-                <Select onValueChange={handlePlatformChange}>
+                <Select onValueChange={onPlatformChange} value={platform?.name}>
                     <SelectTrigger>
                         <SelectValue placeholder="Select Platform" />
                     </SelectTrigger>
@@ -112,7 +106,8 @@ const LinkForm = ({ id, remove }: Iid) => {
                         name="link"
                         placeholder="e.g. https://www.github.com/johnappleseed"
                         required
-                        onChange={handleLinkChange}
+                        onChange={onLinkChange}
+                        value={link}
                     />
                 </div>
             </div>
@@ -121,7 +116,3 @@ const LinkForm = ({ id, remove }: Iid) => {
 };
 
 export default LinkForm;
-function updateLinkForm(id: number, arg1: Platform | null, link: string) {
-    throw new Error("Function not implemented.");
-}
-

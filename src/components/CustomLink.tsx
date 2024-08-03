@@ -6,14 +6,16 @@ import handset from "@/components/assets/icons/handset.svg";
 import handsetTab from "@/components/assets/icons/handset_tab.svg";
 import LinkForm from "../../public/LinkForm";
 import { Platform } from "./data";
+import db from "../app/services/firebase"; // Import your Firestore instance
+import { collection, addDoc } from "firebase/firestore";
 
 interface LinkFormData {
     id: number;
     platform: Platform | null;
     link: string;
 }
-const CustomLink: React.FC = () => {
 
+const CustomLink: React.FC = () => {
     const [linkForms, setLinkForms] = useState<LinkFormData[]>([]);
 
     const addLinkForm = () => {
@@ -30,9 +32,46 @@ const CustomLink: React.FC = () => {
         setLinkForms(linkForms.map(form => form.id === id ? { ...form, platform, link } : form));
     };
 
-    const handleSave = () => {
-        console.log("Saved Data:", linkForms);
-        // Replace with your save logic
+    const handlePlatformChange = (id: number, platform: Platform | null) => {
+        updateLinkForm(id, platform, linkForms.find(form => form.id === id)?.link || "");
+    };
+
+    const handleLinkChange = (id: number, link: string) => {
+        updateLinkForm(id, linkForms.find(form => form.id === id)?.platform || null, link);
+    };
+
+    const addDataToFireStore = async () => {
+        try {
+            const linksCollectionRef = collection(db, "links");
+            const data = linkForms.map((form) => ({
+                platform: form.platform?.name,
+                link: form.link,
+            }));
+            console.log("Data to write:", data);
+            const promises = data.map((linkData) => addDoc(linksCollectionRef, linkData));
+            await Promise.all(promises);
+            console.log("All documents written successfully");
+            return true;
+        } catch (error) {
+            console.error("Error adding document: ", error);
+            return false;
+        }
+    };
+    const handleSave = async (e: { preventDefault: () => void; }) => {
+        e.preventDefault();
+        try {
+            const success = await addDataToFireStore();
+            if (success) {
+                console.log("Data saved successfully");
+                // Display a success message
+            } else {
+                console.log("Failed to save data");
+                // Display an error message
+            }
+        } catch (error) {
+            console.error("Error saving data:", error);
+            // Display an error message
+        }
     };
 
     return (
@@ -60,12 +99,8 @@ const CustomLink: React.FC = () => {
                         </button>
                     </div>
 
-
-
-
                     {linkForms.length == 0 ? (
                         <div className=" py-[3.875rem] px-[1.67rem] w-[100%] flex items-center justify-center mb-[2rem] ">
-
                             <div className=" phone:w-[21.25rem] tablet:w-[50.08rem]  flex items-center justify-center flex-col gap-[2rem]     sphone:w-[100%] ">
                                 <Image
                                     className="tablet:hidden"
@@ -91,25 +126,25 @@ const CustomLink: React.FC = () => {
                                     you share your profiles with everyone!
                                 </p>
                             </div>
-
                         </div>
                     ) : (
                         <div className=" desktop:w-[60.66rem] tablet:w-[100%] tablet:h-[31.825rem] w-[100%] phone:h-[95%] laptop:h-[31.42rem] laptop:mb-[2rem] desktop:mb-[5rem]  overflow-auto overflow-x-auto    " >
                             {linkForms.map((form) => (
                                 <div key={form.id} className=" flex gap-[1rem] flex-col    ">
-
                                     <div className="flex pt-[1.67rem] px-[1.67rem]  flex-col w-[100%]  " >
-                                        <LinkForm remove={removeLinkForm} id={form.id} updateLinkForm={updateLinkForm} />
-
+                                        <LinkForm
+                                            remove={removeLinkForm}
+                                            id={form.id}
+                                            platform={form.platform}
+                                            link={form.link}
+                                            handlePlatformChange={handlePlatformChange}
+                                            handleLinkChange={handleLinkChange}
+                                        />
                                     </div>
-
-
-
                                 </div>
                             ))}
                         </div>
                     )}
-
 
                     <div className="flex p-[1.33rem] w-[100%] border-t-border border-t-[0.083rem]  tablet:justify-end tablet:px-[3.33rem]  tablet:h-[7.833rem] tablet:pt-[2rem] ">
                         <button

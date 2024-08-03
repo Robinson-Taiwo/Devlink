@@ -63,7 +63,7 @@ const Forms: React.FC = () => {
                     setLoading(false);
                     setTimeout(() => {
                         router.push("/home")
-                    }, 3000)
+                    }, 1000)
                 })
                 .catch((error) => {
                     console.log(error.message);
@@ -79,7 +79,7 @@ const Forms: React.FC = () => {
     return (
         <div className="flex flex-col w-[25.9rem]  tablet:w-[33rem] sphone:w-[100%] ">
             {alertText && (
-                <Alert className=" w-[50vw] tablet:w-[30rem] text-base tablet:text-normal te py-[2rem] absolute right-[2rem] top-[2rem] bg-purple text-white  " >
+                <Alert className=" w-[50vw] tablet:w-[30rem] text-base tablet:text-[1.5rem] py-[2rem] absolute right-[2rem] top-[2rem] bg-purple text-white  " >
                     <Terminal className="h-4 w-4" />
                     <AlertTitle>Hi there!!</AlertTitle>
                     <AlertDescription>{alertText}</AlertDescription>
